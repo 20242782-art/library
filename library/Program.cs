@@ -1,4 +1,5 @@
 using Npgsql;
+using library.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +12,8 @@ if (string.IsNullOrWhiteSpace(connectionString))
 }
 var dataSource = NpgsqlDataSource.Create(connectionString);
 builder.Services.AddSingleton(dataSource);
+// Repositories: one new object per web request.
+builder.Services.AddScoped<BookRepository>();
 
 
 var app = builder.Build();
