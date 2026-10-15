@@ -29,3 +29,155 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+/* ===== My library theme ===== */
+:root {
+    --lib-ink: #1f2a44;
+    --lib-ink-soft: #2e3b5e;
+    --lib-amber: #e9a23b;
+    --lib-amber-dark: #c9851f;
+    --lib-paper: #f7f4ee;
+}
+
+body {
+    background-color: var(--lib-paper);
+    color: #2b2b2b;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+h1, h2, h3 {
+    color: var(--lib-ink);
+    font-weight: 700;
+}
+
+/* Top bar */
+.navbar.bg-white {
+    background-color: var(--lib-ink) !important;
+    border-bottom: 4px solid var(--lib-amber) !important;
+    box-shadow: none !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .nav-link.text-dark {
+    color: #fff !important;
+}
+
+    .navbar .nav-link:hover {
+        color: var(--lib-amber) !important;
+    }
+
+.navbar .navbar-toggler {
+    border-color: rgba(255, 255, 255, .5);
+}
+
+.navbar .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* Tables */
+.table-dark {
+    --bs-table-bg: var(--lib-ink);
+    --bs-table-border-color: var(--lib-ink-soft);
+}
+
+.table thead th {
+    font-family: system-ui, "Segoe UI", sans-serif;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-bg-type: rgba(31, 42, 68, .05);
+}
+
+.table-hover > tbody > tr:hover > * {
+    --bs-table-bg-state: rgba(233, 162, 59, .18);
+}
+
+.table {
+    box-shadow: 0 2px 10px rgba(31, 42, 68, .08);
+}
+
+/* Buttons */
+.btn-primary {
+    --bs-btn-bg: var(--lib-amber);
+    --bs-btn-border-color: var(--lib-amber);
+    --bs-btn-color: var(--lib-ink);
+    --bs-btn-hover-bg: var(--lib-amber-dark);
+    --bs-btn-hover-border-color: var(--lib-amber-dark);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-bg: var(--lib-amber-dark);
+    --bs-btn-active-border-color: var(--lib-amber-dark);
+    --bs-btn-active-color: #fff;
+    --bs-btn-focus-shadow-rgb: 233, 162, 59;
+    font-weight: 600;
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: var(--lib-ink);
+    --bs-btn-border-color: var(--lib-ink);
+    --bs-btn-hover-bg: var(--lib-ink);
+    --bs-btn-hover-border-color: var(--lib-ink);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-bg: var(--lib-ink);
+    --bs-btn-active-border-color: var(--lib-ink);
+    --bs-btn-active-color: #fff;
+}
+
+/* Forms and cards */
+.card.card-body {
+    border: 0;
+    border-top: 4px solid var(--lib-amber);
+    border-radius: .6rem;
+    box-shadow: 0 4px 16px rgba(31, 42, 68, .1);
+}
+
+.form-label {
+    font-family: system-ui, "Segoe UI", sans-serif;
+    font-weight: 600;
+    color: var(--lib-ink);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--lib-amber);
+    box-shadow: 0 0 0 .2rem rgba(233, 162, 59, .25);
+}
+
+.badge.text-bg-secondary {
+    background-color: var(--lib-ink-soft) !important;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--lib-ink);
+    border-top: 4px solid var(--lib-amber) !important;
+    color: #cfd6e6 !important;
+}
+
+    .footer a {
+        color: var(--lib-amber);
+    }
+
+/* Home page */
+.lib-hero {
+    padding: 3rem 1rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--lib-ink), var(--lib-ink-soft));
+    color: #fff;
+    border-radius: .8rem;
+}
+
+    .lib-hero h1 {
+        color: #fff;
+    }
+
+    .lib-hero .btn-outline-secondary {
+        --bs-btn-color: #fff;
+        --bs-btn-border-color: #fff;
+        --bs-btn-hover-bg: #fff;
+        --bs-btn-hover-border-color: #fff;
+        --bs-btn-hover-color: var(--lib-ink);
+    }
