@@ -76,4 +76,12 @@ public class MemberRepository
         command.Parameters.AddWithValue("id", member.MemberId);
         await command.ExecuteNonQueryAsync();
     }
+    // DELETE: remove one member. The database refuses if the member still has loans.
+    public async Task DeleteAsync(long id)
+    {
+        const string sql = "DELETE FROM lending.member WHERE member_id = @id;";
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("id", id);
+        await command.ExecuteNonQueryAsync();
+    }
 }
