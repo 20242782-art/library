@@ -32,6 +32,7 @@
                 <td>@note.CreatedOn.ToString("yyyy-MM-dd")</td>
                 <td class="text-end">
                     @* Stage 3 puts the Edit button here *@
+                    <a asp-action="Edit" asp-route-id="@note.NoteId" class="btn btn-sm btn-outline-secondary">Edit</a>
                     @* Stage 4 puts the Delete button here *@
                 </td>
             </tr>

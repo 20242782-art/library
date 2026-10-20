@@ -38,4 +38,27 @@ public class NotesController : Controller
         await _notes.AddAsync(note);
         return RedirectToAction(nameof(Index));
     }
+    // GET /Notes/Edit/5 : the form, filled with note 5.
+    public async Task<IActionResult> Edit(long id)
+    {
+        var note = await _notes.GetByIdAsync(id);
+        if (note == null)
+        {
+            return NotFound();
+        }
+        return View(note);
+    }
+
+    // POST /Notes/Edit/5 : the changed form was submitted.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(Note note)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(note);
+        }
+        await _notes.UpdateAsync(note);
+        return RedirectToAction(nameof(Index));
+    }
 }

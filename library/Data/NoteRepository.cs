@@ -52,4 +52,24 @@ public class NoteRepository
         command.Parameters.AddWithValue("body", (object?)note.Body ?? DBNull.Value);
         await command.ExecuteNonQueryAsync(); // runs SQL that returns no rows
     }
+    // READ: one note, or null when no note has that id.
+    public async Task<Note?> GetByIdAsync(long id)
+    {
+        const string sql = "SELECT note_id, title, body, created_on FROM lending.note WHERE note_id = @id;";
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("id", id); // @id in the SQL receives this value
+        await using var reader = await command.ExecuteReaderAsync();
+        return await reader.ReadAsync() ? ReadNote(reader) : null;
+    }
+
+    // UPDATE: change the title and body of one note. created_on is left alone.
+    public async Task UpdateAsync(Note note)
+    {
+        const string sql = "UPDATE lending.note SET title = @title, body = @body WHERE note_id = @id;";
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("title", note.Title);
+        command.Parameters.AddWithValue("body", (object?)note.Body ?? DBNull.Value);
+        command.Parameters.AddWithValue("id", note.NoteId);
+        await command.ExecuteNonQueryAsync();
+    }
 }
