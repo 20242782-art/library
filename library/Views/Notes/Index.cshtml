@@ -1,0 +1,40 @@
+﻿@model List<Note>
+@{
+    ViewData["Title"] = "Notes";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h1 class="mb-0">Notes</h1>
+        <p class="text-muted mb-0">@Model.Count notes in the notepad</p>
+    </div>
+    @* Stage 2 puts the Add a note button here *@
+    <a asp-action="Create" class="btn btn-primary">Add a note</a>
+</div>
+
+<table class="table table-striped table-hover align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th class="text-end" style="width:4rem">#</th>
+            <th>Title</th>
+            <th>Note</th>
+            <th style="width:8rem">Created</th>
+            <th style="width:10rem"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var note in Model)
+        {
+            <tr>
+                <td class="text-end">@note.NoteId</td>
+                <td>@note.Title</td>
+                <td>@(note.Body ?? "—")</td>
+                <td>@note.CreatedOn.ToString("yyyy-MM-dd")</td>
+                <td class="text-end">
+                    @* Stage 3 puts the Edit button here *@
+                    @* Stage 4 puts the Delete button here *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
