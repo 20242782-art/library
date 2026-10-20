@@ -61,4 +61,23 @@ public class NotesController : Controller
         await _notes.UpdateAsync(note);
         return RedirectToAction(nameof(Index));
     }
+    // GET /Notes/Delete/5 : ask "are you sure?"
+    public async Task<IActionResult> Delete(long id)
+    {
+        var note = await _notes.GetByIdAsync(id);
+        if (note == null)
+        {
+            return NotFound();
+        }
+        return View(note);
+    }
+
+    // POST /Notes/Delete/5 : the delete was confirmed.
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(long id)
+    {
+        await _notes.DeleteAsync(id);
+        return RedirectToAction(nameof(Index));
+    }
 }

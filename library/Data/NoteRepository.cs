@@ -72,4 +72,13 @@ public class NoteRepository
         command.Parameters.AddWithValue("id", note.NoteId);
         await command.ExecuteNonQueryAsync();
     }
+    // DELETE: remove one note.
+    public async Task DeleteAsync(long id)
+    {
+        const string sql = "DELETE FROM lending.note WHERE note_id = @id;";
+        await using var command = _dataSource.CreateCommand(sql);
+        command.Parameters.AddWithValue("id", id);
+        await command.ExecuteNonQueryAsync();
+    }
+
 }

@@ -34,6 +34,7 @@
                     @* Stage 3 puts the Edit button here *@
                     <a asp-action="Edit" asp-route-id="@note.NoteId" class="btn btn-sm btn-outline-secondary">Edit</a>
                     @* Stage 4 puts the Delete button here *@
+                    <a asp-action="Delete" asp-route-id="@note.NoteId" class="btn btn-sm btn-outline-danger">Delete</a>
                 </td>
             </tr>
         }
