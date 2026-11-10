@@ -32,11 +32,13 @@
                 <td><span class="badge text-bg-secondary">@member.MemberType</span></td>
                 <td class="text-end">
                     @* Task 15 puts the Edit button here *@
+                    <a asp-action="Details" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-primary">Loans</a>
                     <a asp-action="Edit" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-secondary">Edit</a>
                     @* Task 16 puts the Delete button here *@
                     <a asp-action="Delete" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-danger">Delete</a>
                 </td>
             </tr>
         }
+
     </tbody>
 </table>
