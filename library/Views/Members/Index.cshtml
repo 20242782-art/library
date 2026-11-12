@@ -19,6 +19,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Type</th>
+            <th class="text-end">Books out</th>
             <th style="width:10rem"></th>
         </tr>
     </thead>
@@ -30,6 +31,7 @@
                 <td>@member.FullName</td>
                 <td>@(member.Email ?? "—")</td>
                 <td><span class="badge text-bg-secondary">@member.MemberType</span></td>
+                <td class="text-end">@member.OpenLoans</td>
                 <td class="text-end">
                     @* Task 15 puts the Edit button here *@
                     <a asp-action="Details" asp-route-id="@member.MemberId" class="btn btn-sm btn-outline-primary">Loans</a>
