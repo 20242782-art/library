@@ -6,9 +6,12 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
     <div>
         <h1 class="mb-0">Loans</h1>
-        <p class="text-muted mb-0">@Model.Count loans, newest first</p>
+        <p class="text-muted mb-0">
+            @Model.Count loans · @Model.Count(l => l.Status == "Out") out ·
+            @Model.Count(l => l.Status == "Overdue") overdue
+        </p>
     </div>
-    <a asp-action="Borrow" class="btn btn-primary">Borrow a book</a>
+    <a asp-action="Borrow" class="btn btn-success">Borrow a book</a>
 </div>
 
 <table class="table table-striped table-hover align-middle">
@@ -32,11 +35,12 @@
                 <td>@(loan.LoanedOn.AddDays(loan.DaysAllowed).ToString("yyyy-MM-dd"))</td>
                 <td><span class="badge @(loan.Status == "Overdue" ? "text-bg-danger" : loan.Status == "Out" ? "text-bg-warning" : "text-bg-secondary")">@loan.Status</span></td>
                 <td class="text-end">
-                    @* Task 9 puts the Return button here *@
-                    <form asp-action="Return" method="post" class="d-inline">
-                        <input type="hidden" name="id" value="@loan.LoanId" />
-                        <button type="submit" class="btn btn-sm btn-outline-primary">Return</button>
-                    </form>
+                    @if (loan.ReturnedOn == null)
+                    {
+                        <form asp-action="Return" asp-route-id="@loan.LoanId" method="post">
+                            <button type="submit" class="btn btn-sm btn-outline-success">Return</button>
+                        </form>
+                    }
                 </td>
             </tr>
         }
